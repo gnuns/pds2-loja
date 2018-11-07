@@ -1,4 +1,4 @@
 #include "Manager.hpp"
 
-Person::Person(string name, string username, string password) : 
-_name(name), _username(username), _password(password) {}
+Manager::Manager(string name, string username, string password) :
+Person(name, username, password) {}
