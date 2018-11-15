@@ -16,6 +16,8 @@ namespace inventory {
 		void loadProducts();
 		void removeProduct(int id);
 		void addProduct(Product* product);
+		void searchProductById(id);
+		void searchProductByName(name);
 	}
 }
 

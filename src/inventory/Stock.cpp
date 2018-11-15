@@ -27,3 +27,25 @@ void inventory::Stock::addProduct(Product* product) {
 	products.insert (pair<int, Product> (product->getId, *product));
 	saveProducts();
 }
+
+void searchProductById(id) {
+	map<int, Product>::iterator it;
+	it = products.find(id);
+	cout << it->second->getId() << '\t' << flush;
+	cout << it->second->getName() << '\t' << flush;
+	cout << it->second->getDescription() << '\t' << flush;
+	cout << it->second->getQuantity() << '\t' << flush;
+	cout << it->second->getProvider() << '\t' << flush;
+	cout << it->second->getPrice() << endl;
+}
+
+void searchProductByName(name) {
+	map<int, Product>::iterator it;
+	it = products.find(name);
+	cout << it->second->getId() << '\t' << flush;
+	cout << it->second->getName() << '\t' << flush;
+	cout << it->second->getDescription() << '\t' << flush;
+	cout << it->second->getQuantity() << '\t' << flush;
+	cout << it->second->getProvider() << '\t' << flush;
+	cout << it->second->getPrice() << endl;
+}
