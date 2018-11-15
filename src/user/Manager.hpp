@@ -15,7 +15,4 @@ namespace user {
 
 	};
 }
-
-#endif
-
 #endif
