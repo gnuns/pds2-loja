@@ -1,32 +1,34 @@
 #include "Person.hpp"
 
-Person::Person(string name, string username, string password) : 
+user::Person::Person(string name, string username, string password) : 
 _name(name), _username(username), _password(password) {}
 
-string Person::getName() {
+string user::Person::getName() {
 	return _name;
 }
 
-string Person::getUsername() {
+string user::Person::getUsername() {
 	return _username;
 }
 
-void Person::setName(string name) {
+void user::Person::setName(string name) {
 	_name = name;
 }
 
-void Person::setUserame(string username) {
+void user::Person::setUserame(string username) {
 	_username = username;
 }
 
-void Person::setPassword(string password) {
+void user::Person::setPassword(string password) {
 	_password = password;
 }
 
-bool Person::checkPassword(string password) {
+bool user::Person::checkPassword(string password) {
 	if (password == _password) {
 		return true;
 	}
 
 	return false;
 }
+
+user::Person::~Person() {}

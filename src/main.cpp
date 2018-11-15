@@ -1,8 +1,8 @@
 #include <iostream>
 
 int main(){
-  std::cout << "teste\n";
-	// login();
+
+	login();
 
 	return 0;
 }

@@ -11,7 +11,7 @@ namespace user {
 	class Session {
 	private:
 		Person _person;
-  public:
+	public:
     Session(string username, string password);
     
 	};
