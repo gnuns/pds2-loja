@@ -23,7 +23,7 @@ namespace user {
 		void setUserame(string username);
 		bool checkPassword(string password);
 
-		~Person() {}
+		~Person();
 	};
 }
 
