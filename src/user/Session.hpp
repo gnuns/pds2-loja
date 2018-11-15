@@ -4,16 +4,21 @@
 #include <iostream>
 #include <string>
 
+#include "Person.hpp"
+
 using namespace std;
+using namespace user;
 
 namespace user {
 
 	class Session {
 	private:
-		Person _person;
+		Person *_person;
   public:
+		string _username;
+    Session();
     Session(string username, string password);
-    
+
 	};
 }
 
