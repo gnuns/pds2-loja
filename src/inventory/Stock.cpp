@@ -24,11 +24,16 @@ void inventory::Stock::saveProducts() {
 }
 
 void inventory::Stock::addProduct(Product* product) {
-	products.insert (pair<int, Product> (product->getId, *product));
-	saveProducts();
+	if(products.find(product->getId()) == products.end()) {
+		products.insert (pair<int, Product> (product->getId(), *product));
+		saveProducts();
+	}else{
+		cout << "Produto ja existe" << endl;
+	}
+	
 }
 
-void searchProductById(id) {
+void inventory::Stock::searchProductById(id) {
 	map<int, Product>::iterator it;
 	it = products.find(id);
 	cout << it->second->getId() << '\t' << flush;
@@ -39,7 +44,7 @@ void searchProductById(id) {
 	cout << it->second->getPrice() << endl;
 }
 
-void searchProductByName(name) {
+void inventory::Stock::searchProductByName(name) {
 	map<int, Product>::iterator it;
 	it = products.find(name);
 	cout << it->second->getId() << '\t' << flush;
