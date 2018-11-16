@@ -11,7 +11,7 @@ namespace user {
 	private:
 
 	public:
-		Manager(string name, string namespace, string password);
+		Manager(string, string, string);
 
 	};
 }
