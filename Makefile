@@ -4,7 +4,7 @@ CFLAGS=-std=c++11 -Wall
 all: main
 
 main:
-	${CC} ${CFLAGS} -o build/main src/inventory/*.cpp src/user/*.cpp  src/*.cpp
+	${CC} ${CFLAGS} src/inventory/*.cpp src/user/*.cpp  src/main.cpp -o build/loja
 
 run:
-	./build/main
+	./build/loja

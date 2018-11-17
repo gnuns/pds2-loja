@@ -1,6 +1,6 @@
 #include "Product.hpp"
 
-inventory::Product::Product(int id, string name, string description, int quantity, string provider, int price) : 
+inventory::Product::Product(int id, string name, string description, int quantity, string provider, int price) :
 _id(id), _name(name), _description(description), _quantity(quantity), _provider(provider), _price(price) {}
 
 int inventory::Product::getId() {
@@ -44,7 +44,7 @@ void inventory::Product::setQuantity(int quantity) {
 }
 
 void inventory::Product::setProvider(string provider) {
-	_provider = provider
+	_provider = provider;
 }
 
 void inventory::Product::setPrice(int price) {

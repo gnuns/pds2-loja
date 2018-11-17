@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <map>
+
+#include "Product.hpp"
 
 using namespace std;
 
@@ -14,11 +17,11 @@ namespace inventory {
 	public:
 		void listProducts();
 		void loadProducts();
-		void removeProduct(int id);
-		void addProduct(Product* product);
-		void searchProductById(id);
-		void searchProductByName(name);
-	}
+		void removeProduct(int);
+		void addProduct(Product*);
+		void searchProductById(int);
+		void searchProductByName(string);
+	};
 }
 
 #endif

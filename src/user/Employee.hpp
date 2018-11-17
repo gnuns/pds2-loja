@@ -2,6 +2,7 @@
 #define EMPLOYEE_H
 
 #include "Person.hpp"
+#include <string>
 
 using namespace std;
 

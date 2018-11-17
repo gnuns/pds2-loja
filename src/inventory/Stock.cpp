@@ -2,11 +2,11 @@
 
 void inventory::Stock::listProducts() {
 	for(map<int, Product> :: iterator it = products.begin(); it != products.end(); it++) {
-		cout << it->first << it->second->getName() << '\t' << flush;
-		cout << it->second->getDescription() << '\t' << flush;
-		cout << it->second->getQuantity() << '\t' << flush;
-		cout << it->second->getProvider() << '\t' << flush;
-		cout << it->second->getPrice() << endl;
+		cout << it->first << it->second.getName() << '\t' << flush;
+		cout << it->second.getDescription() << '\t' << flush;
+		cout << it->second.getQuantity() << '\t' << flush;
+		cout << it->second.getProvider() << '\t' << flush;
+		cout << it->second.getPrice() << endl;
 	}
 }
 
@@ -30,27 +30,28 @@ void inventory::Stock::addProduct(Product* product) {
 	}else{
 		cout << "Produto ja existe" << endl;
 	}
-	
+
 }
 
-void inventory::Stock::searchProductById(id) {
+void inventory::Stock::searchProductById(int id) {
 	map<int, Product>::iterator it;
 	it = products.find(id);
-	cout << it->second->getId() << '\t' << flush;
-	cout << it->second->getName() << '\t' << flush;
-	cout << it->second->getDescription() << '\t' << flush;
-	cout << it->second->getQuantity() << '\t' << flush;
-	cout << it->second->getProvider() << '\t' << flush;
-	cout << it->second->getPrice() << endl;
+	cout << it->second.getId() << '\t' << flush;
+	cout << it->second.getName() << '\t' << flush;
+	cout << it->second.getDescription() << '\t' << flush;
+	cout << it->second.getQuantity() << '\t' << flush;
+	cout << it->second.getProvider() << '\t' << flush;
+	cout << it->second.getPrice() << endl;
 }
 
-void inventory::Stock::searchProductByName(name) {
+void inventory::Stock::searchProductByName(string name) {
 	map<int, Product>::iterator it;
-	it = products.find(name);
-	cout << it->second->getId() << '\t' << flush;
-	cout << it->second->getName() << '\t' << flush;
-	cout << it->second->getDescription() << '\t' << flush;
-	cout << it->second->getQuantity() << '\t' << flush;
-	cout << it->second->getProvider() << '\t' << flush;
-	cout << it->second->getPrice() << endl;
+	// TODO: corigir função. O products.find só pode receber uma int como argumento
+	// it = products.find(name);
+	// cout << it->second.getId() << '\t' << flush;
+	// cout << it->second.getName() << '\t' << flush;
+	// cout << it->second.getDescription() << '\t' << flush;
+	// cout << it->second.getQuantity() << '\t' << flush;
+	// cout << it->second.getProvider() << '\t' << flush;
+	// cout << it->second.getPrice() << endl;
 }

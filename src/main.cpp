@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 #include "user/Session.hpp"
 
 using namespace std;
-using user::Session;
+using namespace user;
 
 void startLogin(Session** userSession) {
   *userSession = new Session("Testando", "");
@@ -15,7 +13,12 @@ void startLogin(Session** userSession) {
 int main() {
   Session *userSession = nullptr;
   startLogin(&userSession);
-  cout << userSession->_username;
+  cout << userSession->_username << "nome" << endl;
+
+  // while (userSession != nullptr) {
+  //
+  //   cout << "nome" << endl;
+  // }
 
 	return 0;
 }

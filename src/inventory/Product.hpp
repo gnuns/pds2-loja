@@ -16,7 +16,7 @@ namespace inventory {
 			string _provider;
 			int _price;
 		public:
-			Product(int id, string name, string description, int quantity, string provider, int price);
+			Product(int, string, string, int, string, int);
 
 			int getId();
 			string getName();
@@ -24,16 +24,16 @@ namespace inventory {
 			int getQuantity();
 			string getProvider();
 			int getPrice();
-			void setId(int id);
-			void setName(string name);
-			void setDescription(string description);
-			void setQuantity(int quantity);
-			void setProvider(string provider);
-			void setPrice(int price);
+			void setId(int);
+			void setName(string);
+			void setDescription(string);
+			void setQuantity(int);
+			void setProvider(string);
+			void setPrice(int);
 			void save();
 
 			~Product();
-	}
+	};
 }
 
 #endif
