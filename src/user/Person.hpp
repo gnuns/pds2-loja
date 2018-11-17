@@ -15,7 +15,7 @@ namespace user {
 		string _password;
 		void setPassword(string password);
 	public:
-		Person(string name, string namespace, string password);
+		Person(string, string, string);
 
 		string getName();
 		string getUsername();

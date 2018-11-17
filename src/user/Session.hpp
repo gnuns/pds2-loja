@@ -3,18 +3,18 @@
 
 #include <iostream>
 #include <string>
+#include "Person.hpp"
 
 using namespace std;
 
 namespace user {
-
+	
 	class Session {
 	private:
 		Person *_person;
-  public:
+	public:
 		string _username;
-    Session(string username, string password);
-
+		Session(string, string);
 	};
 }
 

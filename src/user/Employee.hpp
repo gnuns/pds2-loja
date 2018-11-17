@@ -11,7 +11,7 @@ namespace user {
 	private:
 
 	public:
-		Employee(string name, string namespace, string password);
+		Employee(string, string, string);
 
 		//void sell(int "produto")
 	};
