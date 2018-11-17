@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
+#include "../libraries/SearchIndex.h"
 
 using namespace std;
 
 #include "user/Session.hpp"
-#include "invetory/Product.hpp"
+#include "inventory/Product.hpp"
 
 using namespace std;
 using user::Session;
@@ -29,22 +30,30 @@ int main() {
   startLogin(&userSession);
   cout << userSession->_username;
   
-  int option = -1;
+  int option = menu();
   while (option != 0){
-    option = menu();
     switch(option){
+      
       case 1:
-        string name;
-        string description;
-        cout << "Digite o nome do Produto: ";
-        cin >> name;
-        cout << "Digite a descricao do Produto";
-        cin >> description;
-        Product *newProduct = new Product (name, description);
-      default:
-        cout << "Opcao Invalida tente novamente!";
-        break;
+          int index;
+          string name;
+          string description;
+          double price;
+          index = getIndex();
+          cout << "Digite o nome do Produto: ";
+          cin >> name;
+          cout << "Digite a descricao do Produto: ";
+          cin >> description;
+          cout << "Digite o preco do Produto: ";
+          cin >> price;
+          Product *newProduct = new Product (index, name, description, price);
+          newProduct->save();
+          cout << "Salvo!" << endl;
+      break;
+      //default:
+        //  cout << "Opcao Invalida tente novamente!";
     }
+    option = menu();
   }
 	return 0;
 }
