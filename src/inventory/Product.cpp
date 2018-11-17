@@ -1,6 +1,6 @@
 #include "Product.hpp"
 
-inventory::Product::Product(int id, string name, string description, int quantity, string provider, int price) :
+inventory::Product::Product(int id, string name, string description, int quantity, string provider, double price) :
 _id(id), _name(name), _description(description), _quantity(quantity), _provider(provider), _price(price) {}
 
 int inventory::Product::getId() {
@@ -15,15 +15,7 @@ string inventory::Product::getDescription() {
 	return _description;
 }
 
-int inventory::Product::getQuantity() {
-	return _quantity;
-}
-
-string inventory::Product::getProvider() {
-	return _provider;
-}
-
-int inventory::Product::getPrice() {
+double inventory::Product::getPrice() {
 	return _price;
 }
 
@@ -47,12 +39,16 @@ void inventory::Product::setProvider(string provider) {
 	_provider = provider;
 }
 
-void inventory::Product::setPrice(int price) {
+void inventory::Product::setPrice(double price) {
 	_price = price;
 }
 
 void inventory::Product::save() {
-	//Fazer função para salvar os produtos num arquivo txt
+
+	ofstream arch;
+    arch.open ("./inventory/products.txt", ios::app);
+    arch << getId() << ";" << getName() << ";" << getDescription() << ";" << getPrice() << endl;
+    arch.close();
 }
 
 inventory::Product::~Product() {}

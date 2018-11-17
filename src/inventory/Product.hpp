@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -14,22 +15,22 @@ namespace inventory {
 			string _description;
 			int _quantity;
 			string _provider;
-			int _price;
+			double _price;
 		public:
-			Product(int, string, string, int, string, int);
+			Product(int, string, string, int, string, double);
 
 			int getId();
 			string getName();
 			string getDescription();
 			int getQuantity();
 			string getProvider();
-			int getPrice();
+			double getPrice();
 			void setId(int);
 			void setName(string);
 			void setDescription(string);
 			void setQuantity(int);
 			void setProvider(string);
-			void setPrice(int);
+			void setPrice(double);
 			void save();
 
 			~Product();

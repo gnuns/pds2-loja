@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "../libraries/SearchIndex.h"
 
 #include "core/Session.hpp"
 #include "user/Person.hpp"
