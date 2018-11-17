@@ -8,10 +8,9 @@ using namespace std;
 namespace user {
 
 	class Manager : public Person {
-	private:
-
 	public:
 		Manager(string, string, string);
+		const bool isManager () override { return true; }
 
 	};
 }

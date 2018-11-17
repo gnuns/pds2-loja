@@ -10,7 +10,7 @@ void inventory::Stock::listProducts() {
 	}
 }
 
-void inventory::Stock::loadProducts() {
+inventory::Stock::Stock() {
 	//Fazer uma função para pegar os dados do txt e jogar no map
 }
 

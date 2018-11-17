@@ -15,8 +15,8 @@ namespace inventory {
 		map<int, Product> products;
 		void saveProducts();
 	public:
+		Stock();
 		void listProducts();
-		void loadProducts();
 		void removeProduct(int);
 		void addProduct(Product*);
 		void searchProductById(int);

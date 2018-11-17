@@ -13,6 +13,7 @@ namespace user {
 
 	public:
 		Employee(string, string, string);
+		const bool isManager () override { return false; }
 
 		//void sell(int "produto")
 	};

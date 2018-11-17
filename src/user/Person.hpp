@@ -22,6 +22,7 @@ namespace user {
 		void setName(string name);
 		void setUserame(string username);
 		bool checkPassword(string password);
+		virtual const bool isManager() = 0;
 
 		~Person();
 	};

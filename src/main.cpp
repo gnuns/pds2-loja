@@ -1,24 +1,29 @@
 #include <iostream>
 #include <string>
 
-#include "user/Session.hpp"
+#include "core/Session.hpp"
+#include "user/Person.hpp"
 
 using namespace std;
+using namespace core;
 using namespace user;
 
-void startLogin(Session** userSession) {
-  *userSession = new Session("Testando", "");
+void startLogin(Session* session) {
+  string username, password;
+  cout << "Digite o nome de usuário:" << endl;
+  cin >> username;
+  cout << "Digite a senha do usuário " << username << endl;
+  cin >> password;
+  session->tryToLogin(username, password);
+
+  if (session->getCurrentUser() != nullptr) {
+    cout << "Olá, " << session->getCurrentUser()->getName() << endl;
+  }
 }
 
 int main() {
-  Session *userSession = nullptr;
-  startLogin(&userSession);
-  cout << userSession->_username << "nome" << endl;
-
-  // while (userSession != nullptr) {
-  //
-  //   cout << "nome" << endl;
-  // }
+  Session *session = new Session;
+  startLogin(session);
 
 	return 0;
 }
