@@ -1,7 +1,7 @@
 #include "Stock.hpp"
 
 void inventory::Stock::listProducts() {
-	for(map<int, Product> :: iterator it = products.begin(); it != products.end(); it++) {
+	for(auto it = products.begin(); it != products.end(); it++) {
 		cout << it->first << it->second.getName() << '\t' << flush;
 		cout << it->second.getDescription() << '\t' << flush;
 		cout << it->second.getQuantity() << '\t' << flush;

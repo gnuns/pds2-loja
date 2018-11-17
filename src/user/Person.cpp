@@ -1,6 +1,6 @@
 #include "Person.hpp"
 
-user::Person::Person(string name, string username, string password) : 
+user::Person::Person(string name, string username, string password) :
 _name(name), _username(username), _password(password) {}
 
 string user::Person::getName() {
@@ -24,11 +24,7 @@ void user::Person::setPassword(string password) {
 }
 
 bool user::Person::checkPassword(string password) {
-	if (password == _password) {
-		return true;
-	}
-
-	return false;
+	return password == _password;
 }
 
 user::Person::~Person() {}

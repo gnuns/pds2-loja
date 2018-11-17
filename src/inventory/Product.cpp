@@ -19,6 +19,14 @@ double inventory::Product::getPrice() {
 	return _price;
 }
 
+int inventory::Product::getQuantity() {
+	return _quantity;
+}
+
+string inventory::Product::getProvider () {
+	return _provider;
+}
+
 void inventory::Product::setId(int id) {
 	_id = id;
 }

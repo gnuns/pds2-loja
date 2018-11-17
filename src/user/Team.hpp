@@ -14,14 +14,14 @@ using namespace std;
 namespace user {
 	class Team {
 	private:
-		map<int, Person*> people;
+		map<string, Person*> _people;
 	public:
 		Team ();
 		void listManager();
 		void listEmployees();
 		void removePerson(string);
 		void addPerson(Person*);
-		Person* searchPersonByUsername(string);
+		Person* getPersonByUsername(string);
 	};
 }
 
