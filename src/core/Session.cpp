@@ -10,10 +10,14 @@ Person* core::Session::getCurrentUser() {
   return _currentUser;
 }
 
-void core::Session::tryToLogin(string username, string password) {
-  if (username == "funcionario" && password == "123456") {
-    _currentUser = new Employee("Funcionário da Loja", username, password);
-  } else if (username == "gerente" && password == "123456") {
-    _currentUser = new Manager("Gerente da Loja", username, password);
-  }
+void core::Session::setCurrentUser (Person* currentUser) {
+  _currentUser = currentUser;
+}
+
+Team* core::Session::getTeam() {
+  return _team;
+}
+
+Stock* core::Session::getStock() {
+  return _stock;
 }

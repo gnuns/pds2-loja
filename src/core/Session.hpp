@@ -21,8 +21,11 @@ namespace core {
 		Team* _team;
 	public:
 		Session();
-		Person* getCurrentUser();
 		void tryToLogin(string, string);
+		Person* getCurrentUser();
+		void setCurrentUser(Person*);
+		Stock* getStock();
+		Team* getTeam();
 	};
 }
 
