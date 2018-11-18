@@ -45,13 +45,18 @@ void inventory::Stock::searchProductById(int id) {
 }
 
 void inventory::Stock::searchProductByName(string name) {
-	map<int, Product>::iterator it;
+	//map<int, Product>::iterator it;
 	// TODO: corigir função. O products.find só pode receber uma int como argumento
 	// it = products.find(name);
-	// cout << it->second.getId() << '\t' << flush;
-	// cout << it->second.getName() << '\t' << flush;
-	// cout << it->second.getDescription() << '\t' << flush;
-	// cout << it->second.getQuantity() << '\t' << flush;
-	// cout << it->second.getProvider() << '\t' << flush;
-	// cout << it->second.getPrice() << endl;
+
+	for(map<int, Product>::iterator it = products.begin(); it != products.end(); it++) {
+    	if(it->second.getName() == name) {
+    		cout << it->second.getId() << '\t' << flush;
+			cout << it->second.getName() << '\t' << flush;
+			cout << it->second.getDescription() << '\t' << flush;
+			cout << it->second.getQuantity() << '\t' << flush;
+			cout << it->second.getProvider() << '\t' << flush;
+			cout << it->second.getPrice() << endl;
+		}
+	}
 }
