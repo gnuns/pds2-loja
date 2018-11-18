@@ -12,14 +12,16 @@ namespace core {
 
 	class DataFile {
 	private:
+		const string delimiter = "=";
 		string _filePath;
 		map<string, string> _parameters;
-		void save();
 		void load();
 	public:
-		DataFile(string);
+		DataFile(string filePath, bool loadData = true);
 		string getParam(string);
 		map<string, string> getParametersMap();
+		void setParam(string key, string value = "");
+		void save();
 	};
 }
 

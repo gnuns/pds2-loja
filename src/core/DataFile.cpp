@@ -1,18 +1,18 @@
 #include "DataFile.hpp"
 
-core::DataFile::DataFile (string filePath) : _filePath(filePath) {
+core::DataFile::DataFile (string filePath, bool loadData) : _filePath(filePath) {
+  if (!loadData) return;
   load();
 }
 
 void core::DataFile::load () {
   string line, key, value;
-  string delimiter = "=";
   auto delimiterPosition = string::npos;
-  ifstream myfile(_filePath);
+  ifstream inputFile(_filePath);
 
-  if (!myfile.is_open()) return;
+  if (!inputFile.is_open()) return;
 
-  while (getline(myfile, line)) {
+  while (getline(inputFile, line)) {
     delimiterPosition = line.find(delimiter);
     if (delimiterPosition == string::npos) {
       _parameters[line] = "";
@@ -26,6 +26,20 @@ void core::DataFile::load () {
   }
 }
 
+void core::DataFile::save () {
+  ofstream outputFile(_filePath);
+
+  if (!outputFile.is_open()) return;
+
+  for (auto it = _parameters.begin(); it != _parameters.end(); it++) {
+    if (it->second.empty()) {
+      outputFile << it->first << '\n';
+      continue;
+    }
+    outputFile << it->first << delimiter << it->second << '\n';
+	}
+}
+
 string core::DataFile::getParam (string key) {
   auto it = _parameters.find(key);
 
@@ -34,6 +48,10 @@ string core::DataFile::getParam (string key) {
   }
 
   return "";
+}
+
+void core::DataFile::setParam (string key, string value) {
+  _parameters[key] = value;
 }
 
 map<string, string> core::DataFile::getParametersMap () {
