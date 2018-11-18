@@ -14,11 +14,12 @@ OBJECTS=$(SOURCES:$(SRC_PATH)/%.cpp=$(BUILD_PATH)/%.o)
 TESTS_OBJECTS=$(TESTS:$(TEST_PATH)/%.cpp=$(BUILD_PATH)/%.o)
 # Define os arquivos .d (dependências usadas nos headers)
 DEPS=$(OBJECTS:.o=.d)
+TESTS_DEPS=$(TESTS_OBJECTS:.o=.d)
 
 default: all
 
 db:
-	@rm -rf ./build/data/ && cp -R ./data/ ./build/data
+	rm -rf ./build/data/ && cp -R ./data/ ./build/data
 
 tests: $(OBJECTS) $(TESTS_OBJECTS)
 	$(CXX) $(CXXFLAGS) $(TESTS_OBJECTS) $(OBJECTS:build\/main\.o/) \
@@ -31,9 +32,7 @@ run:
 	./build/loja
 
 clean:
-	$(RM) -f $(DEPS) $(OBJECTS) \
-	$(TESTS_OBJECTS)$(BUILD_PATH)/$(BIN_NAME) \
-	$(BUILD_PATH)/$(BIN_NAME)-test
+	rm -rf $(OBJECTS) $(DEPS) $(TESTS_OBJECTS) $(TESTS_DEPS)
 
 dirs:
 	@mkdir -p $(dir $(OBJECTS))
