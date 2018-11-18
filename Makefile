@@ -5,6 +5,7 @@ SRC_PATH=src
 TEST_PATH=test
 BUILD_PATH=build
 BIN_NAME=loja
+BIN_PATH=$(BUILD_PATH)/bin
 
 # Procura todos os arquivos .cpp na pasta src
 SOURCES=$(shell find $(SRC_PATH) -name '*.cpp')
@@ -23,25 +24,25 @@ db:
 
 tests: $(OBJECTS) $(TESTS_OBJECTS)
 	$(CXX) $(CXXFLAGS) $(TESTS_OBJECTS) $(OBJECTS:build\/main\.o/) \
-	$(TEST_PATH)/doctest.h -o $(BUILD_PATH)/$(BIN_NAME)-test
+	$(TEST_PATH)/doctest.h -o $(BIN_PATH)/$(BIN_NAME)-test
 
 run-tests: tests
-	$(BUILD_PATH)/$(BIN_NAME)-test
+	$(BIN_PATH)/$(BIN_NAME)-test
 
 run:
-	./build/loja
+	$(BIN_PATH)/$(BIN_NAME)
 
 clean:
 	rm -rf $(OBJECTS) $(DEPS) $(TESTS_OBJECTS) $(TESTS_DEPS)
 
 dirs:
-	@mkdir -p $(dir $(OBJECTS))
+	@mkdir -p $(dir $(OBJECTS)) $(BIN_PATH)
 
 all: dirs $(BUILD_PATH)/$(BIN_NAME)
 
 # Creation of the executable
 $(BUILD_PATH)/$(BIN_NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(BUILD_PATH)/$(BIN_NAME)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(BIN_PATH)/$(BIN_NAME)
 
 -include $(DEPS)
 
