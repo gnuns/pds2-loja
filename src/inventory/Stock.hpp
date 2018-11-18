@@ -12,7 +12,7 @@ using namespace std;
 namespace inventory {
 	class Stock {
 	private:
-		map<int, Product> products;
+		map<int, Product*> _products;
 		void saveProducts();
 	public:
 		Stock();

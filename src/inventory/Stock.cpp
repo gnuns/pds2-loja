@@ -1,62 +1,93 @@
 #include "Stock.hpp"
+#include "../core/DataFile.hpp"
+
+using namespace core;
+using namespace std;
 
 void inventory::Stock::listProducts() {
-	for(auto it = products.begin(); it != products.end(); it++) {
-		cout << it->first << it->second.getName() << '\t' << flush;
-		cout << it->second.getDescription() << '\t' << flush;
-		cout << it->second.getQuantity() << '\t' << flush;
-		cout << it->second.getProvider() << '\t' << flush;
-		cout << it->second.getPrice() << endl;
+	for(auto it = _products.begin(); it != _products.end(); it++) {
+		cout << it->first << '\t' << flush;
+		cout << it->second->getName() << '\t' << flush;
+		cout << it->second->getDescription() << '\t' << flush;
+		cout << it->second->getQuantity() << '\t' << flush;
+		cout << it->second->getProvider() << '\t' << flush;
+		cout << it->second->getPrice() << endl;
 	}
 }
 
 inventory::Stock::Stock() {
-	//Fazer uma função para pegar os dados do txt e jogar no map
+  // Lê o arquivo com a lista de ids dos produtos
+	DataFile* productList = new DataFile("./data/products.idx.data");
+	DataFile* currentProductData;
+
+  for (auto it : productList->getParametersMap()) {
+    if (it.first.empty()) continue;
+    // Lê o arqvuivo individual com os dados do produto
+    currentProductData = new DataFile((string)"./data/products/" + (string)it.first + (string)".data");
+
+    _products[stoi(it.first)] = new Product(
+      stoi(it.first),
+      currentProductData->getParam("name"),
+      currentProductData->getParam("description"),
+      stoi(currentProductData->getParam("quantity")),
+      currentProductData->getParam("provider"),
+      stod(currentProductData->getParam("price"))
+    );
+  }
 }
 
 void inventory::Stock::removeProduct(int id) {
-	products.erase(id);
+	_products.erase(id);
 	saveProducts();
 }
 
 void inventory::Stock::saveProducts() {
-	//Fazer uma função para pegar os dados do map e jogar no txt
+	DataFile* productList = new DataFile("./data/products.idx.data", false);
+	DataFile* currentProductData;
+
+  for(auto it = _products.begin(); it != _products.end(); it++) {
+    productList->setParam(to_string(it->second->getId()));
+
+    currentProductData = new DataFile((string)"./data/products/" + to_string(it->second->getId()) + (string)".data", false);
+    currentProductData->setParam("id", to_string(it->second->getId()));
+    currentProductData->setParam("name", it->second->getName());
+    currentProductData->setParam("description", it->second->getDescription());
+    currentProductData->setParam("quantity", to_string(it->second->getQuantity()));
+    currentProductData->setParam("provider", it->second->getProvider());
+    currentProductData->setParam("price", to_string(it->second->getPrice()));
+		currentProductData->save();
+	}
+  productList->save();
 }
 
 void inventory::Stock::addProduct(Product* product) {
-	if(products.find(product->getId()) == products.end()) {
-		products.insert (pair<int, Product> (product->getId(), *product));
+	if(_products.find(product->getId()) == _products.end()) {
+		_products.insert (pair<int, Product*> (product->getId(), product));
 		saveProducts();
-	}else{
+	} else {
 		cout << "Produto ja existe" << endl;
 	}
-
 }
 
 void inventory::Stock::searchProductById(int id) {
-	map<int, Product>::iterator it;
-	it = products.find(id);
-	cout << it->second.getId() << '\t' << flush;
-	cout << it->second.getName() << '\t' << flush;
-	cout << it->second.getDescription() << '\t' << flush;
-	cout << it->second.getQuantity() << '\t' << flush;
-	cout << it->second.getProvider() << '\t' << flush;
-	cout << it->second.getPrice() << endl;
+	auto it = _products.find(id);
+	cout << it->second->getId() << '\t' << flush;
+	cout << it->second->getName() << '\t' << flush;
+	cout << it->second->getDescription() << '\t' << flush;
+	cout << it->second->getQuantity() << '\t' << flush;
+	cout << it->second->getProvider() << '\t' << flush;
+	cout << it->second->getPrice() << endl;
 }
 
 void inventory::Stock::searchProductByName(string name) {
-	//map<int, Product>::iterator it;
-	// TODO: corigir função. O products.find só pode receber uma int como argumento
-	// it = products.find(name);
-
-	for(map<int, Product>::iterator it = products.begin(); it != products.end(); it++) {
-    	if(it->second.getName() == name) {
-    		cout << it->second.getId() << '\t' << flush;
-			cout << it->second.getName() << '\t' << flush;
-			cout << it->second.getDescription() << '\t' << flush;
-			cout << it->second.getQuantity() << '\t' << flush;
-			cout << it->second.getProvider() << '\t' << flush;
-			cout << it->second.getPrice() << endl;
+	for(auto it = _products.begin(); it != _products.end(); it++) {
+    	if(it->second->getName() == name) {
+    		cout << it->second->getId() << '\t' << flush;
+			cout << it->second->getName() << '\t' << flush;
+			cout << it->second->getDescription() << '\t' << flush;
+			cout << it->second->getQuantity() << '\t' << flush;
+			cout << it->second->getProvider() << '\t' << flush;
+			cout << it->second->getPrice() << endl;
 		}
 	}
 }
