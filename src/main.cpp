@@ -1,14 +1,72 @@
 #include <iostream>
 #include <string>
 
-#include "core/Session.hpp"
+#include "main.hpp"
+
+
 #include "user/Person.hpp"
 
 using namespace std;
-using namespace core;
 using namespace user;
 
-void startLogin(Session* session) {
+int main() {
+  Session *session = new Session;
+  startLogin(session);
+
+  while(session->getCurrentUser() != nullptr) {
+    awaitCommand(session);
+  }
+
+	return 0;
+}
+
+void awaitCommand (Session* session) {
+  int command;
+  
+  if (session->getCurrentUser()->isManager()) {
+    printManagerCommands();
+  } else {
+    printEmployeeCommands();
+  }
+
+  cin >> command;
+
+  processCommand(command, session);
+}
+
+void printEmployeeCommands () {
+  cout << "\nOpções:" << endl;
+  cout << "\t[1] Ver estoque\n";
+  cout << "\t[2] Nova venda\n";
+  cout << "\t[0] Sair\n";
+}
+
+void printManagerCommands () {
+  cout << "\nOpções:" << endl;
+  cout << "\t[1] Ver estoque\n";
+  cout << "\t[2] Nova venda\n";
+  cout << "\t[0] Sair\n";
+}
+
+void processCommand (int command, Session* session) {
+  // bool isManager = session->getCurrentUser()->isManager();
+
+  switch (command) {
+    case 1:
+      session->getStock()->listProducts();
+      break;
+    case 0:
+      session->logout();
+      break;
+    default:
+      cout << "Comando inválido!\n";
+      break;
+  }
+
+}
+
+
+void startLogin (Session* session) {
   string username, password;
   Person* expectedUser;
 
@@ -32,11 +90,4 @@ void startLogin(Session* session) {
 
   session->setCurrentUser(expectedUser);
   cout << "Olá, " << session->getCurrentUser()->getName() << endl;
-}
-
-int main() {
-  Session *session = new Session;
-  startLogin(session);
-
-	return 0;
 }
