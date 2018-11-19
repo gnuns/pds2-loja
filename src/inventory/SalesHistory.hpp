@@ -1,5 +1,5 @@
-#ifndef SALES_H
-#define SALES_H
+#ifndef SALESHISTORY_H
+#define SALESHISTORY_H
 
 #include <iostream>
 #include <string>
@@ -10,19 +10,22 @@
 using namespace std;
 
 namespace inventory {
-	class Sales {
+	class SalesHistory {
 	private:
 		map<int, Sale*> _sales;
 		void saveSales();
 	public:
-		Sales();
+		SalesHistory();
+
 		void listSales();
 		void addSale(Sale*);
-        void cancelSale(int); // passar o id 
+        void cancelSale(int id);
 		void searchSaleById(int);
         void searchSalesByDate(string date);
-        void searchSalesByEmployee(int); // passar o id
+        void searchSalesByEmployee(int id);
         void searchSalesByPrice(double);
+
+        ~SalesHistory();
     };
 }
 
