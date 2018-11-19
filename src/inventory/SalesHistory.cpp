@@ -5,7 +5,7 @@ using namespace core;
 using namespace std; 
 
 inventory::SalesHistory::SalesHistory () {
-	
+
 }
 
 void inventory::SalesHistory::listSales() {
@@ -62,3 +62,6 @@ void inventory::SalesHistory::searchSalesByPrice(double price) {
 		}
 	}
 }
+
+inventory::SalesHistory::~SalesHistory() {}
+
