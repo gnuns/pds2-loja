@@ -17,7 +17,7 @@ void inventory::Stock::listProducts() {
 }
 
 inventory::Stock::Stock() {
-  // Lê o arquivo com a lista de ids dos produtos
+  	// Lê o arquivo com a lista de ids dos produtos
 	DataFile* productList = new DataFile("./data/products.idx.data");
 	DataFile* currentProductData;
 
