@@ -4,6 +4,10 @@
 using namespace core;
 using namespace std; 
 
+inventory::SalesHistory::SalesHistory () {
+	
+}
+
 void inventory::SalesHistory::listSales() {
 	// Imprime a lista de vendas
 	for(auto it = _sales.begin(); it != _sales.end(); it++) {
