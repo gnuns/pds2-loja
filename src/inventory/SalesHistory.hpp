@@ -14,6 +14,7 @@ namespace inventory {
 	private:
 		map<int, Sale*> _sales;
 		void saveSales();
+		void printSale(Sale*);
 	public:
 		SalesHistory();
 

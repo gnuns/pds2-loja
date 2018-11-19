@@ -6,38 +6,31 @@
 #include <map>
 
 #include "Product.hpp"
+#include "user/Employee.hpp"
 
 using namespace std;
+using namespace user;
 
 namespace inventory {
 	class Sale {
 	private:
         int _id;
-        int _idFuncionario;
         string _date;
-        string _paymentMethod;
-        double _price;
-        map <int productId, int quantity> _itensVenda; // armazena o id e a quantidade do produto na venda
+        Employee*  _seller;
+        map<int, int> _items;
+        void save();
 	public:
-		Sale(int, int, string, string, double, map);
+		Sale(int id, string sellerUsername, string date);
        
         void addItem(int productId, int quantity);
         void removeItem(int productId);
 
-        void setId(int);
-        void setIdEmployee(int);
-        void setDate(string);
-        void setPaymentMethod(string);
-        void setPrice(double);
-
         int getId();
        
         string getDate();
-        string getPaymentMethod();
-        double getPrice();
+        double getTotalPrice();
 
-        int getIdEmployee();
-        string getEmplyeeName();
+        Employee* getSeller();
         
         ~Sale();
     };
