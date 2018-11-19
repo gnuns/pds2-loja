@@ -1,10 +1,11 @@
 #include "Stock.hpp"
-#include "../core/DataFile.hpp"
+#include "core/DataFile.hpp"
 
 using namespace core;
 using namespace std;
 
 void inventory::Stock::listProducts() {
+	// Imprime a lista de produtos (carregada no construtor)
 	for(auto it = _products.begin(); it != _products.end(); it++) {
 		cout << it->first << '\t' << flush;
 		cout << it->second->getName() << '\t' << flush;
@@ -37,11 +38,13 @@ inventory::Stock::Stock() {
 }
 
 void inventory::Stock::removeProduct(int id) {
+	// Remove um produto a partir do parâmetro id
 	_products.erase(id);
 	saveProducts();
 }
 
 void inventory::Stock::saveProducts() {
+	// Salva a lista de produtos no arquivo
 	DataFile* productList = new DataFile("./data/products.idx.data", false);
 	DataFile* currentProductData;
 
@@ -60,7 +63,9 @@ void inventory::Stock::saveProducts() {
   productList->save();
 }
 
+// Adiciona um produto ao estoque
 void inventory::Stock::addProduct(Product* product) {
+	// Verfica, pelo ID, se do produto passado já existe
 	if(_products.find(product->getId()) == _products.end()) {
 		_products.insert (pair<int, Product*> (product->getId(), product));
 		saveProducts();
@@ -69,6 +74,7 @@ void inventory::Stock::addProduct(Product* product) {
 	}
 }
 
+// Pesquisa por determinado produto a partir do ID
 void inventory::Stock::searchProductById(int id) {
 	auto it = _products.find(id);
 	cout << it->second->getId() << '\t' << flush;
@@ -78,7 +84,7 @@ void inventory::Stock::searchProductById(int id) {
 	cout << it->second->getProvider() << '\t' << flush;
 	cout << it->second->getPrice() << endl;
 }
-
+// Pesquisa por determinado produto a partir do nome
 void inventory::Stock::searchProductByName(string name) {
 	for(auto it = _products.begin(); it != _products.end(); it++) {
     	if(it->second->getName() == name) {
