@@ -3,7 +3,7 @@
 
 using namespace core;
 using namespace std;
-
+ 
 void inventory::Stock::listProducts() {
 	// Imprime a lista de produtos (carregada no construtor)
 	for(auto it = _products.begin(); it != _products.end(); it++) {

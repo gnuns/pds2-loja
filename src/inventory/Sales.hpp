@@ -6,14 +6,14 @@
 #include <map>
 
 #include "Sale.hpp"
-
+ 
 using namespace std;
 
 namespace inventory {
 	class Sales {
 	private:
 		map<int, Sale*> _sales;
-		//void saveSales();
+		void saveSales();
 	public:
 		Sales();
 		void listSales();
