@@ -1,4 +1,4 @@
-#include "../doctest.h"
+#include "doctest.h"
 #include <stdio.h>
 
 TEST_CASE("implementation") {

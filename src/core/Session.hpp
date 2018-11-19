@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-#include "../inventory/Stock.hpp"
-#include "../user/Person.hpp"
-#include "../user/Team.hpp"
+#include "inventory/Stock.hpp"
+#include "user/Person.hpp"
+#include "user/Team.hpp"
 
 using namespace std;
 using namespace inventory;

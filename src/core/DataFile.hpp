@@ -9,7 +9,11 @@
 using namespace std;
 
 namespace core {
-
+	/**
+	 *  Classe para manipulação dos arquivos de dados.
+	 *	Nesta classe é feito o "parsing" dos arquivos "*.data" e "*.idx.data"
+	 *	que armazenam os dados dos funcionários, das vendas e dos produtos.
+	 */
 	class DataFile {
 	private:
 		const string delimiter = "=";

@@ -1,11 +1,12 @@
-CXX=g++
-CXXFLAGS=-std=c++11 -Wall
-
 SRC_PATH=src
 TEST_PATH=test
+LIB_PATH=lib
 BUILD_PATH=build
-BIN_NAME=loja
 BIN_PATH=$(BUILD_PATH)/bin
+BIN_NAME=loja
+
+CXX=g++
+CXXFLAGS=-std=c++11 -Wall -I$(LIB_PATH) -I$(SRC_PATH)
 
 # Procura todos os arquivos .cpp na pasta src
 SOURCES=$(shell find $(SRC_PATH) -name '*.cpp')
@@ -23,8 +24,9 @@ db:
 	rm -rf ./build/data/ && cp -R ./data/ ./build/data
 
 tests: $(OBJECTS) $(TESTS_OBJECTS)
-	$(CXX) $(CXXFLAGS) $(TESTS_OBJECTS) $(OBJECTS:build\/main\.o/) \
-	$(TEST_PATH)/doctest.h -o $(BIN_PATH)/$(BIN_NAME)-test
+	$(CXX) $(CXXFLAGS) -fprofile-arcs -ftest-coverage \
+		$(TESTS_OBJECTS) $(OBJECTS:build\/main\.o/) \
+		-o $(BIN_PATH)/$(BIN_NAME)-test
 
 run-tests: tests
 	$(BIN_PATH)/$(BIN_NAME)-test
@@ -53,5 +55,3 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.cpp
 $(BUILD_PATH)/%.test.o: $(TEST_PATH)/%.test.cpp
 	@echo "Compiling: $< -> $@"
 	$(CXX) $(CXXFLAGS) -MP -MMD -c $< -o $@
-
-
