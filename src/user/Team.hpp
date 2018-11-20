@@ -15,6 +15,7 @@ namespace user {
 	class Team {
 	private:
 		map<string, Person*> _people;
+		void savePeople();
 	public:
 		Team ();
 		void listManager();

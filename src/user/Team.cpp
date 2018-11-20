@@ -40,11 +40,29 @@ user::Person* user::Team::getPersonByUsername (string username) {
 
 void user::Team::addPerson(string name, string username, string password, bool isManager){
 
+  Person* newPerson;
+
   if(isManager){
-    Manager* manager = new Manager(name, username, password);
-    manager->saveManager();
+    newPerson = new Manager(name, username, password);
   }else{
-    Employee* employee = new Employee(name, username, password);
-    employee->saveEmployee();
+    newPerson = new Employee(name, username, password);
   }
+
+  newPerson->savePerson();
+
+  _people[username] = newPerson;
+  savePeople();
+}
+
+void user::Team::savePeople() {
+  DataFile* teamList = new DataFile("./data/team.idx.data", false);
+  DataFile* currentPersonData;
+
+  for(auto it = _people.begin(); it != _people.end(); it++) {
+    teamList->setParam(it->second->getUsername());
+
+    it->second->savePerson();
+
+  }
+  teamList->save();
 }
