@@ -1,6 +1,6 @@
+description=Sem ponta
 id=4
 name=Tesoura
-description=Sem ponta
-quantity=15
+price=1.990000
 provider=Distribuidora Teste
-price=1.99
+quantity=15

@@ -2,7 +2,7 @@
 #include <string>
 
 #include "main.hpp"
-
+#include<cmath>
 
 #include "user/Person.hpp"
 #include "inventory/Sale.hpp"
@@ -92,27 +92,47 @@ void startSale(Session* session){
       Sale* sale = new Sale(lastId, session->getCurrentUser(), "20/11/2018");
       map<int, int> items;
       while(entrada == 1) {
+        
         cout << "\nDigite o código do produto ou (0) para outras opções: ";
         cin >> productId;
 
-        if(!session->getStock()->getProductById(productId)){
-           cout << "\nCódigo inválido!";
-           continue;
-        }
 
         if(productId == 0){
           cout << "\nCancelar (0) | Adicionar item (1) | Registrar venda (2): ";
-          cin >> entrada;
-    
+          cin >> entrada;    
           if(entrada == 1){
             continue;
           }else{
             break;
           }
         }
+        
+        if(!session->getStock()->getProductById(productId)){
+           cout << "Código inválido!\n";
+           continue;
+        }
+
+
+
+        if(session->getStock()->getProductById(productId)->getQuantity() <= 0){
+           cout << "Produto indisponivel...\n";
+           continue;
+        }
 
         cout << "Digite a quantidade: ";
         cin >> quantProduct;
+
+        if(quantProduct <= 0){
+           cout << "Quantidade invalida!\n";
+           continue;
+        }
+
+        if(session->getStock()->getProductById(productId)->getQuantity() <= quantProduct){
+          // quantidade desejada menor que estoque
+           cout << "Quantidade indisponivel. Apenas " << session->getStock()->getProductById(productId)->getQuantity() << " unidades no estoque.\n";
+           continue;
+        }
+
 
         sale->addItem(session->getStock()->getProductById(productId), quantProduct);
       }
@@ -126,9 +146,6 @@ void startSale(Session* session){
         << " x " << it->second << "\n"; 
       }
 
-     
-
-
       if(entrada == 0){
         cout << "\n";
         cout << "\nVenda cancelada!";
@@ -141,7 +158,11 @@ void startSale(Session* session){
       cout << "\nVenda realizada com sucesso!";
 
       cout << "\n----------------------------";
-      salesHistory->addSale(sale);
+
+      
+
+
+      salesHistory->addSale(sale, session);
       delete salesHistory;
       delete sale;
 }

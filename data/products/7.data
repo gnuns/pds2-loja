@@ -1,6 +1,6 @@
+description=Tubo amarelo proibida no ENEM
 id=7
 name=Caneta bic
-description=Tubo amarelo proibida no ENEM
-quantity=8
+price=1.500000
 provider=Distribuidora Teste
-price=1.50
+quantity=8

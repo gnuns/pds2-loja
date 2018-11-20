@@ -21,7 +21,7 @@ namespace inventory {
 		SalesHistory(Session* session);
 		map<int, Sale*> getSales();
 		void listSales();
-		void addSale(Sale*);
+		void addSale(Sale*, Session*);
         void cancelSale(int id);
 		void searchSaleById(int);
         void searchSalesByDate(string date);

@@ -1,6 +1,6 @@
+description=Só um lápis mesmo
 id=1
 name=Lápis Faber Castel
-description=Só um lápis mesmo
-quantity=8
+price=10.800000
 provider=Distribuidora Teste
-price=10.80
+quantity=4

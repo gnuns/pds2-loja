@@ -13,8 +13,10 @@ namespace inventory {
 	class Stock {
 	private:
 		map<int, Product*> _products;
-		void saveProducts();
+		
 	public:
+	
+		void saveProducts();
 		Stock();
 		void listProducts();
 		void removeProduct(int);

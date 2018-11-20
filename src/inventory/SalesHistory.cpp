@@ -59,8 +59,15 @@ void inventory::SalesHistory::listSales() {
 	}
 }
 
-void inventory::SalesHistory::addSale(Sale* sale) {
+void inventory::SalesHistory::addSale(Sale* sale, Session* session) {
 		_sales.insert (pair<int, Sale*> (sale->getId(), sale));
+
+	    // remover do estoque
+	    map<int, int>  items = sale->getItems();
+      	for(auto it = items.begin(); it != items.end(); it++) {
+        	session->getStock()->getProductById(it->first)->setQuantity(session->getStock()->getProductById(it->first)->getQuantity() - it->second); 
+        	session->getStock()->saveProducts();
+      	}
 		saveSalesHistory();
 }
 
