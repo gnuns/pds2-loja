@@ -11,7 +11,7 @@ namespace user {
 	public:
 		Manager(string, string, string);
 		const bool isManager () override { return true; }
-
+		void saveManager();
 	};
 }
 #endif

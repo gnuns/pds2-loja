@@ -11,6 +11,10 @@ string user::Person::getUsername() {
 	return _username;
 }
 
+string user::Person::getPassword() {
+	return _password;
+}
+
 void user::Person::setName(string name) {
 	_name = name;
 }

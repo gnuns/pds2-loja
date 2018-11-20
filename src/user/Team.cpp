@@ -40,11 +40,11 @@ user::Person* user::Team::getPersonByUsername (string username) {
 
 void user::Team::addPerson(string name, string username, string password, bool isManager){
 
- /* if(isManager){
+  if(isManager){
     Manager* manager = new Manager(name, username, password);
-    manager->save();
+    manager->saveManager();
   }else{
     Employee* employee = new Employee(name, username, password);
-    employee->save();
-  }*/
+    employee->saveEmployee();
+  }
 }
