@@ -66,3 +66,14 @@ void user::Team::savePeople() {
   }
   teamList->save();
 }
+
+void user::Team::listUsers() {
+  for (auto it = _people.begin(); it != _people.end(); it++) {
+    printUser(it->second);
+  }
+}
+
+void user::Team::printUser(Person* person) {
+    cout << "#" << person->getUsername() << '\t' << flush;
+    cout << person->getName() << '\t' << flush;
+}

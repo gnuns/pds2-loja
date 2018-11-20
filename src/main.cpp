@@ -24,6 +24,12 @@ int main() {
 	return 0;
 }
 
+void listUsers(Session* session){
+  cout << "\n---------------------------- \n";
+  session->getTeam()->listUsers();
+  cout << "\n---------------------------- \n";
+}
+
 void createNewUser(Session* session){
   string name, username, password;
   int option;
@@ -74,7 +80,8 @@ void printManagerCommands () {
   cout << "\t[1] Ver estoque\n";
   cout << "\t[2] Nova venda\n";
   cout << "\t[3] Novo Funcionario\n";
-  cout << "\t[4] Histórico de vendas\n";
+  cout << "\t[4] Novo Funcionario\n";
+  cout << "\t[5] Histórico de vendas\n";
   cout << "\t[0] Sair\n";
 }
 
@@ -186,8 +193,15 @@ void processCommand (int command, Session* session) {
       }else{
         cout << "Acesso negado!" << endl;
       }
-      break;
-    case 4: 
+    break;
+    case 4:
+      if (isManager){
+        listUsers(session);
+      }else{
+        cout << "Acesso negado!" << endl;
+      }
+    break;
+    case 5: 
       if(isManager){
         SalesHistory* salesHistory = new SalesHistory(session);
         cout << "---------- Vendas ----------\n";

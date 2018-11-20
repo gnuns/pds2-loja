@@ -16,12 +16,14 @@ namespace user {
 	private:
 		map<string, Person*> _people;
 		void savePeople();
+		void printUser(Person*);
 	public:
 		Team ();
 		void listManager();
 		void listEmployees();
 		void removePerson(string);
 		void addPerson(string, string, string, bool isManager);
+		void listUsers();
 		Person* getPersonByUsername(string);
 	};
 }
