@@ -8,15 +8,24 @@ void inventory::Stock::listProducts() {
 	// Imprime a lista de produtos (carregada no construtor)
 
 	cout << endl;
-	cout  << '\t' << flush << "-------------------- Lista de Produtos --------------------" << endl;
+	cout  << '\t' << flush << "-------------------- Estoque --------------------" << endl;
 	cout << endl;
+	int quantity;
+	string status;
+
 	for(auto it = _products.begin(); it != _products.end(); it++) {
-		cout << it->first << '\t' << flush;
+	    quantity = (it->second->getQuantity());
+		if(quantity > 0){
+			status = " unidades (Disponível)";
+		}else{
+			status = " unidades (Indisponível)";
+		}
+     	cout << "#" << it->first << '\t' << flush;
 		cout << it->second->getName() << '\t' << flush;
 		cout << it->second->getDescription() << '\t' << flush;
-		cout << it->second->getQuantity() << '\t' << flush;
 		cout << it->second->getProvider() << '\t' << flush;
-		cout << "R$ " << it->second->getPrice() << endl;
+		cout << "R$ " << it->second->getPrice() << '\t' << flush;
+		cout << it->second->getQuantity() << status  << endl;
 	}
 }
 
