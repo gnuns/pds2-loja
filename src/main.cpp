@@ -74,6 +74,7 @@ void printManagerCommands () {
   cout << "\t[1] Ver estoque\n";
   cout << "\t[2] Nova venda\n";
   cout << "\t[3] Novo Funcionario\n";
+  cout << "\t[4] Histórico de vendas\n";
   cout << "\t[0] Sair\n";
 }
 
@@ -124,20 +125,24 @@ void startSale(Session* session){
         << " x " << it->second << "\n"; 
       }
 
+     
+
+
+      if(entrada == 0){
+        cout << "\n";
+        cout << "\nVenda cancelada!";
+        cout << "\n----------------------------";
+      
+        return;
+      }
       cout << "\n";
       cout << "\nValor Total: R$" << sale->getTotalPrice();
       cout << "\nVenda realizada com sucesso!";
 
       cout << "\n----------------------------";
-
-
-      if(entrada == 0){
-        return;
-      }
-
       salesHistory->addSale(sale);
-      // salesHistory;
-      //delete sale;
+      salesHistory;
+      delete sale;
 }
 
 
