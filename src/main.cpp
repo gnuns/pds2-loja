@@ -113,6 +113,7 @@ void startSale(Session* session){
 
         cout << "Digite a quantidade: ";
         cin >> quantProduct;
+
         sale->addItem(session->getStock()->getProductById(productId), quantProduct);
       }
 
@@ -141,7 +142,7 @@ void startSale(Session* session){
 
       cout << "\n----------------------------";
       salesHistory->addSale(sale);
-      salesHistory;
+      delete salesHistory;
       delete sale;
 }
 
@@ -163,6 +164,15 @@ void processCommand (int command, Session* session) {
 
       }
       break;
+    case 4: 
+      if(isManager){
+        SalesHistory* salesHistory = new SalesHistory(session);
+        cout << "---------- Vendas ----------\n";
+        salesHistory->listSales();         // imprime as vendas
+        cout << "----------------------------";
+        delete salesHistory;
+    }
+    break;
     case 0:
       session->logout();
       break;

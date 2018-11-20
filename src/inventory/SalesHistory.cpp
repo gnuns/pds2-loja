@@ -16,11 +16,11 @@ inventory::SalesHistory::SalesHistory(Session* session) {
 	  
 	 //cout << session->getTeam()->getPersonByUsername(currentSaleData->getParam("seller"))->getName();
 	  _sales[stoi(it.first)] = new Sale(
-      stoi(currentSaleData->getParam("id")),
-      session->getTeam()->getPersonByUsername(currentSaleData->getParam("seller")),
-      currentSaleData->getParam("date")
-    );
-  
+       stoi(currentSaleData->getParam("id")),
+       session->getTeam()->getPersonByUsername(currentSaleData->getParam("seller")),
+       currentSaleData->getParam("date")
+      );
+	   _sales[stoi(it.first)]->setTotalPrice(stoi(currentSaleData->getParam("totalPrice")));
 	}
 }
 
@@ -35,7 +35,8 @@ void inventory::SalesHistory::saveSalesHistory() {
     salesList->setParam(to_string(it->second->getId()));
     currentSaleData = new DataFile((string)"./data/saleshistory/" + to_string(it->second->getId()) + (string)".data", false);
 	currentSaleData->setParam("id", to_string(it->second->getId()));
-		currentSaleData->setParam("seller",  it->second->getSeller()->getUsername());
+	currentSaleData->setParam("seller",  it->second->getSeller()->getUsername());
+	currentSaleData->setParam("date",  it->second->getDate());
 	currentSaleData->setParam("totalPrice", to_string(it->second->getTotalPrice()));
 	items =  it->second->getItems();
 	for(auto x = items.begin(); x !=  items.end(); x++) {
@@ -53,7 +54,7 @@ map<int, Sale*> inventory::SalesHistory::getSales(){
 
 void inventory::SalesHistory::listSales() {
 	for (auto it = _sales.begin(); it != _sales.end(); it++) {
-		cout << it->first << '\t' << flush;
+		//cout << it->first << '\t' << flush;
 		printSale(it->second);
 	}
 }
@@ -85,7 +86,7 @@ void inventory::SalesHistory::printSale(Sale* sale) {
 		cout << "#" << sale->getId() << '\t' << flush;
 		cout << sale->getSeller()->getName() << '\t' << flush;
 		cout << sale->getDate() << '\t' << flush;
-		cout << sale->getTotalPrice() << endl;
+		cout << "R$" << sale->getTotalPrice() << endl;
 }
 
 inventory::SalesHistory::~SalesHistory() {}

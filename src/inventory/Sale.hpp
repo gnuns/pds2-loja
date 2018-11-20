@@ -20,6 +20,7 @@ namespace inventory {
         map<int, int> _items;
         void saveSales();
         double _totalPrice;
+        
 	public:
 		Sale(int id, Person* seller, string date);
        
@@ -28,6 +29,7 @@ namespace inventory {
         int getId();
         string getDate();
         double getTotalPrice();
+        void setTotalPrice(double);
         Person* getSeller();        
         map<int, int> getItems();
         

@@ -12,7 +12,9 @@ int inventory::Sale::getId() {
 string inventory::Sale::getDate(){
 	return _date;
 }
-
+void inventory::Sale::setTotalPrice(double totalPrice){
+	_totalPrice = totalPrice;
+}
 double inventory::Sale::getTotalPrice(){
 /*	for(auto it = _items.begin(); it != _items.end(); it++) {
         cout << session->getStock()->getProductById(it->first)->getName() 
