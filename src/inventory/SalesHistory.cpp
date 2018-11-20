@@ -4,6 +4,16 @@
 using namespace core;
 using namespace std; 
 
+
+inventory::SalesHistory::SalesHistory() {
+	// ---
+}
+
+void inventory::SalesHistory::saveSalesHistory() {
+	// ---
+}
+
+
 void inventory::SalesHistory::listSales() {
 	for (auto it = _sales.begin(); it != _sales.end(); it++) {
 		cout << it->first << '\t' << flush;
@@ -13,7 +23,7 @@ void inventory::SalesHistory::listSales() {
 
 void inventory::SalesHistory::addSale(Sale* sale) {
 		_sales.insert (pair<int, Sale*> (sale->getId(), sale));
-		saveSales();
+		saveSalesHistory();
 }
 
 

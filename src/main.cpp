@@ -10,6 +10,7 @@ using namespace std;
 using namespace user;
 
 int main() {
+   std::cout << "\x1B[2J\x1B[H";
   Session *session = new Session;
   startLogin(session);
 
@@ -55,6 +56,10 @@ void processCommand (int command, Session* session) {
     case 1:
       session->getStock()->listProducts();
       break;
+    case 2:
+      session->getStock()->listProducts();
+      cout << "Nova venda..." << endl;
+      break;  
     case 0:
       session->logout();
       break;
@@ -70,7 +75,7 @@ void startLogin (Session* session) {
   string username, password;
   Person* expectedUser;
 
-  cout << "Digite o nome de usuário:" << endl;
+  cout << "Digite o nome de usuário: ";
   cin >> username;
 
   expectedUser = session->getTeam()->getPersonByUsername(username);
@@ -80,7 +85,7 @@ void startLogin (Session* session) {
     return;
   }
 
-  cout << "Digite a senha de " << expectedUser->getName() << endl;
+  cout << "Digite a senha de " << expectedUser->getName() << " ";
   cin >> password;
 
   if (!expectedUser->checkPassword(password)) {

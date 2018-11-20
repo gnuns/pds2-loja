@@ -18,19 +18,16 @@ namespace inventory {
         string _date;
         Employee*  _seller;
         map<int, int> _items;
-        void save();
+        void saveSales();
 	public:
-		Sale(int id, string sellerUsername, string date);
+		Sale(int id, Employee* seller, string date);
        
         void addItem(int productId, int quantity);
-        void removeItem(int productId);
 
         int getId();
-       
         string getDate();
         double getTotalPrice();
-
-        Employee* getSeller();
+        Employee* getSeller();        
         
         ~Sale();
     };
