@@ -81,10 +81,14 @@ void printManagerCommands () {
 
 void startSale(Session* session){
 
-    int productId, quantProduct, entrada = 1;
-
-      SalesHistory* salesHist = new SalesHistory();
-      Sale* sale = new Sale(0, session->getCurrentUser(), "20/11/2018");
+    int productId, quantProduct, lastId, entrada = 1;
+      SalesHistory* salesHistory = new SalesHistory(session);
+      map<int, Sale*> sales = salesHistory->getSales();
+      for (auto it = sales.begin(); it != sales.end(); it++) {
+		     lastId = it->first;
+	    } 
+      lastId ++;
+      Sale* sale = new Sale(lastId, session->getCurrentUser(), "20/11/2018");
       map<int, int> items;
       while(entrada == 1) {
         cout << "\nDigite o código do produto ou (0) para outras opções: ";
@@ -131,10 +135,9 @@ void startSale(Session* session){
         return;
       }
 
-      salesHist->addSale(sale);
-
-      delete sale;
-      delete salesHist;
+      salesHistory->addSale(sale);
+      // salesHistory;
+      //delete sale;
 }
 
 

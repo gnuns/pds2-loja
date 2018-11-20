@@ -6,8 +6,10 @@
 #include <map>
 
 #include "Sale.hpp"
+#include "core/Session.hpp"
  
 using namespace std;
+using namespace core;
 
 namespace inventory {
 	class SalesHistory {
@@ -16,8 +18,8 @@ namespace inventory {
 		void saveSalesHistory();
 		void printSale(Sale*);
 	public:
-		SalesHistory();
-
+		SalesHistory(Session* session);
+		map<int, Sale*> getSales();
 		void listSales();
 		void addSale(Sale*);
         void cancelSale(int id);
@@ -25,7 +27,6 @@ namespace inventory {
         void searchSalesByDate(string date);
         void searchSalesByEmployee(int id);
         void searchSalesByPrice(double);
-
         ~SalesHistory();
     };
 }

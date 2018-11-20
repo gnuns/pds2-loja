@@ -21,7 +21,6 @@ Team* core::Session::getTeam() {
 Stock* core::Session::getStock() {
   return _stock;
 }
-
 void core::Session::logout() {
   _currentUser = nullptr;
 }
