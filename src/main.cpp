@@ -161,7 +161,9 @@ void processCommand (int command, Session* session) {
       break;  
     case 3:
       if (isManager){
-
+        createNewUser(session);
+      }else{
+        cout << "Acesso negado!" << endl;
       }
       break;
     case 4: 

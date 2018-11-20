@@ -6,7 +6,7 @@
 #include <map>
 
 #include "Sale.hpp"
-#include "core/Session.hpp"
+#include "../core/Session.hpp"
  
 using namespace std;
 using namespace core;

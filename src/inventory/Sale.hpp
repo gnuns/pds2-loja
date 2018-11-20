@@ -6,7 +6,7 @@
 #include <map>
 
 #include "Product.hpp"
-#include "user/Person.hpp"
+#include "../user/Person.hpp"
 
 using namespace std;
 using namespace user;
