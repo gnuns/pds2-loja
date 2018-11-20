@@ -1,5 +1,5 @@
 #include "Stock.hpp"
-#include "core/DataFile.hpp"
+#include "../core/DataFile.hpp"
 
 using namespace core;
 using namespace std;
