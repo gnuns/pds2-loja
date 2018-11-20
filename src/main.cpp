@@ -5,12 +5,15 @@
 
 
 #include "user/Person.hpp"
+#include "inventory/Sale.hpp"
+#include "inventory/SalesHistory.hpp"
 
 using namespace std;
 using namespace user;
-
+using namespace inventory;
 int main() {
-   std::cout << "\x1B[2J\x1B[H";
+  // std::cout << "\x1B[2J\x1B[H";
+  
   Session *session = new Session;
   startLogin(session);
 
@@ -53,6 +56,7 @@ void awaitCommand (Session* session) {
     printEmployeeCommands();
   }
 
+  cout << "\nSelecione: ";
   cin >> command;
 
   processCommand(command, session);
@@ -73,9 +77,70 @@ void printManagerCommands () {
   cout << "\t[0] Sair\n";
 }
 
+
+
+void startSale(Session* session){
+
+    int productId, quantProduct, entrada = 1;
+
+      SalesHistory* salesHist = new SalesHistory();
+      Sale* sale = new Sale(0, session->getCurrentUser(), "20/11/2018");
+      map<int, int> items;
+      while(entrada == 1) {
+        cout << "\nDigite o código do produto ou (0) para outras opções: ";
+        cin >> productId;
+
+        if(!session->getStock()->getProductById(productId)){
+           cout << "\nCódigo inválido!";
+           continue;
+        }
+
+        if(productId == 0){
+          cout << "\nCancelar (0) | Adicionar item (1) | Registrar venda (2): ";
+          cin >> entrada;
+    
+          if(entrada == 1){
+            continue;
+          }else{
+            break;
+          }
+        }
+
+        cout << "Digite a quantidade: ";
+        cin >> quantProduct;
+        sale->addItem(session->getStock()->getProductById(productId), quantProduct);
+      }
+
+
+      items = sale->getItems();
+      cout << "\n---------------------------- \n";
+
+      for(auto it = items.begin(); it != items.end(); it++) {
+        cout << session->getStock()->getProductById(it->first)->getName() 
+        << " x " << it->second << "\n"; 
+      }
+
+      cout << "\n";
+      cout << "\nValor Total: R$" << sale->getTotalPrice();
+      cout << "\nVenda realizada com sucesso!";
+
+      cout << "\n----------------------------";
+
+
+      if(entrada == 0){
+        return;
+      }
+
+      salesHist->addSale(sale);
+
+      delete sale;
+      delete salesHist;
+}
+
+
 void processCommand (int command, Session* session) {
   bool isManager = session->getCurrentUser()->isManager();
-
+  
   switch (command) {
     case 1:
       session->getStock()->listProducts();
@@ -83,9 +148,8 @@ void processCommand (int command, Session* session) {
 
     case 2:
       session->getStock()->listProducts();
-      cout << "Nova venda..." << endl;
+      startSale(session);
       break;  
-
     case 3:
       if (isManager){
 

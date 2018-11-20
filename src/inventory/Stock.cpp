@@ -6,13 +6,17 @@ using namespace std;
  
 void inventory::Stock::listProducts() {
 	// Imprime a lista de produtos (carregada no construtor)
+
+	cout << endl;
+	cout  << '\t' << flush << "-------------------- Lista de Produtos --------------------" << endl;
+	cout << endl;
 	for(auto it = _products.begin(); it != _products.end(); it++) {
 		cout << it->first << '\t' << flush;
 		cout << it->second->getName() << '\t' << flush;
 		cout << it->second->getDescription() << '\t' << flush;
 		cout << it->second->getQuantity() << '\t' << flush;
 		cout << it->second->getProvider() << '\t' << flush;
-		cout << it->second->getPrice() << endl;
+		cout << "R$ " << it->second->getPrice() << endl;
 	}
 }
 
@@ -37,14 +41,20 @@ inventory::Stock::Stock() {
   }
 }
 
+inventory::Product* inventory::Stock::getProductById(int id){
+	auto it = _products.find(id);
+	return it->second;
+}
+
+
 void inventory::Stock::removeProduct(int id) {
 	// Remove um produto a partir do parâmetro id
-	if (it != _people.end()) {
+/*	if (it != _people.end()) {
     	_products.erase(id);
 		saveProducts();
   	} else {
   		cout << "Produto não encontrado" << endl;
-  	}
+  	}*/
 }
 
 void inventory::Stock::saveProducts() {
@@ -101,3 +111,5 @@ void inventory::Stock::searchProductByName(string name) {
 		}
 	}
 }
+
+

@@ -1,7 +1,9 @@
 #include "Sale.hpp"
 
-inventory::Sale::Sale(int id, Employee* seller, string date) :
-	_id(id), _seller(seller), _date(date) {}
+inventory::Sale::Sale(int id, Person* seller, string date) :
+	_id(id), _seller(seller), _date(date) {
+		_totalPrice = 0.0;
+	}
 
 int inventory::Sale::getId() {
 	return _id;
@@ -12,14 +14,24 @@ string inventory::Sale::getDate(){
 }
 
 double inventory::Sale::getTotalPrice(){
-	// return para cada produto -> quant * preco
-	return 0.0;
+/*	for(auto it = _items.begin(); it != _items.end(); it++) {
+        cout << session->getStock()->getProductById(it->first)->getName() 
+        << " x " << it->second; 
+    }*/
+	return _totalPrice;
 }
 
-Employee* inventory::Sale::getSeller(){
+Person* inventory::Sale::getSeller(){
 	return _seller;
 }
 
-void inventory::Sale::addItem(int productId, int quantity){
-	// add item id quant
+void inventory::Sale::addItem(Product* product, int quantity){
+    _items.insert (pair<int, int> (product->getId(), quantity));
+	_totalPrice += product->getPrice() * quantity;
 }
+
+map<int, int> inventory::Sale::getItems(){
+	return _items;
+}
+
+inventory::Sale::~Sale() {}

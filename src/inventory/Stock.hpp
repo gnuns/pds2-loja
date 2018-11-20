@@ -21,6 +21,7 @@ namespace inventory {
 		void addProduct(Product*);
 		void searchProductById(int);
 		void searchProductByName(string);
+		Product* getProductById(int);
 	};
 }
 
