@@ -39,8 +39,12 @@ inventory::Stock::Stock() {
 
 void inventory::Stock::removeProduct(int id) {
 	// Remove um produto a partir do parâmetro id
-	_products.erase(id);
-	saveProducts();
+	if (it != _people.end()) {
+    	_products.erase(id);
+		saveProducts();
+  	} else {
+  		cout << "Produto não encontrado" << endl;
+  	}
 }
 
 void inventory::Stock::saveProducts() {

@@ -4,7 +4,6 @@
 using namespace core;
 using namespace std; 
 
-
 inventory::SalesHistory::SalesHistory() {
 	// ---
 }
@@ -12,7 +11,6 @@ inventory::SalesHistory::SalesHistory() {
 void inventory::SalesHistory::saveSalesHistory() {
 	// ---
 }
-
 
 void inventory::SalesHistory::listSales() {
 	for (auto it = _sales.begin(); it != _sales.end(); it++) {
@@ -50,3 +48,6 @@ void inventory::SalesHistory::printSale(Sale* sale) {
 		cout << sale->getDate() << '\t' << flush;
 		cout << sale->getTotalPrice() << endl;
 }
+
+inventory::SalesHistory::~SalesHistory() {}
+

@@ -37,3 +37,14 @@ user::Person* user::Team::getPersonByUsername (string username) {
 
   return nullptr;
 }
+
+user::Team::addPerson(string name, string username, string password, bool isManager){
+
+  if(isManager){
+    Manager* manager = new Manager(name, username, password);
+    manager->save();
+  }else{
+    Employee* employee = new Employee(name, username, password);
+    employee->save();
+  }
+}
