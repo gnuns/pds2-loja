@@ -1,4 +1,4 @@
-#include "Product.hpp"
+#include "Product.hpp" 
 
 inventory::Product::Product(int id, string name, string description, int quantity, string provider, double price) :
 _id(id), _name(name), _description(description), _quantity(quantity), _provider(provider), _price(price) {}

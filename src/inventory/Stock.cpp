@@ -3,7 +3,7 @@
 
 using namespace core;
 using namespace std;
-
+ 
 void inventory::Stock::listProducts() {
 	// Imprime a lista de produtos (carregada no construtor)
 	for(auto it = _products.begin(); it != _products.end(); it++) {
@@ -17,7 +17,7 @@ void inventory::Stock::listProducts() {
 }
 
 inventory::Stock::Stock() {
-  // Lê o arquivo com a lista de ids dos produtos
+  	// Lê o arquivo com a lista de ids dos produtos
 	DataFile* productList = new DataFile("./data/products.idx.data");
 	DataFile* currentProductData;
 
@@ -39,8 +39,12 @@ inventory::Stock::Stock() {
 
 void inventory::Stock::removeProduct(int id) {
 	// Remove um produto a partir do parâmetro id
-	_products.erase(id);
-	saveProducts();
+	if (it != _people.end()) {
+    	_products.erase(id);
+		saveProducts();
+  	} else {
+  		cout << "Produto não encontrado" << endl;
+  	}
 }
 
 void inventory::Stock::saveProducts() {

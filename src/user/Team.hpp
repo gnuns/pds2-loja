@@ -20,7 +20,7 @@ namespace user {
 		void listManager();
 		void listEmployees();
 		void removePerson(string);
-		void addPerson(Person*);
+		void addPerson(string, string, string, bool isManager);
 		Person* getPersonByUsername(string);
 	};
 }

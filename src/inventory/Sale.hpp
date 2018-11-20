@@ -6,7 +6,7 @@
 #include <map>
 
 #include "Product.hpp"
-#include "user/Person.hpp"
+#include "user/Employee.hpp"
 
 using namespace std;
 using namespace user;
@@ -15,17 +15,20 @@ namespace inventory {
 	class Sale {
 	private:
         int _id;
-        Person* _seller;
         string _date;
-        string _paymentMethod;
-        double _price;
+        Employee*  _seller;
+        map<int, int> _items;
+        void saveSales();
 	public:
-		Sale(int, int, string, string, double);
-        void setId(int);
-        void setSeller(Person*);
-        void setDate(string);
-        void setPaymentMethod(string);
-        void setPrice(double);
+		Sale(int id, Employee* seller, string date);
+       
+        void addItem(int productId, int quantity);
+
+        int getId();
+        string getDate();
+        double getTotalPrice();
+        Employee* getSeller();        
+        
         ~Sale();
     };
 }
