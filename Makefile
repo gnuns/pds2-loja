@@ -9,7 +9,7 @@ CXX=g++
 CXXFLAGS=-std=c++11 -Wall -I$(LIB_PATH) -I$(SRC_PATH)
 
 # Procura todos os arquivos .cpp na pasta src
-SOURCES=$(shell find $(SRC_PATH) -name '*.cpp')
+SOURCES=$(shell find $(SRC_PATH) -name '*.cpp' -not -name 'main.cpp')
 TESTS=$(shell find $(TEST_PATH) -name '*.test.cpp')
 # Define os nomes dos arquivos .o a partir dos .cpp
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.cpp=$(BUILD_PATH)/%.o)
@@ -25,7 +25,7 @@ db:
 
 tests: $(OBJECTS) $(TESTS_OBJECTS)
 	$(CXX) $(CXXFLAGS) -fprofile-arcs -ftest-coverage \
-		$(TESTS_OBJECTS) $(OBJECTS:build\/main\.o/) \
+		$(OBJECTS) $(TESTS_OBJECTS) \
 		-o $(BIN_PATH)/$(BIN_NAME)-test
 
 run-tests: tests
@@ -43,8 +43,8 @@ dirs:
 all: dirs $(BUILD_PATH)/$(BIN_NAME)
 
 # Creation of the executable
-$(BUILD_PATH)/$(BIN_NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(BIN_PATH)/$(BIN_NAME)
+$(BUILD_PATH)/$(BIN_NAME): $(OBJECTS) 
+	$(CXX) $(CXXFLAGS) $(OBJECTS) $(SRC_PATH)/main.cpp -o $(BIN_PATH)/$(BIN_NAME)
 
 -include $(DEPS)
 
