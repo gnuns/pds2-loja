@@ -1,10 +1,12 @@
 #include "Team.hpp"
 #include "../core/DataFile.hpp"
+#include <stdexcept>
 
 using namespace core;
 using namespace std;
 
 user::Team::Team () {
+  int isManager;
   DataFile* peopleList = new DataFile("./data/team.idx.data");
   DataFile* currentPersonData;
 
@@ -12,7 +14,13 @@ user::Team::Team () {
     if (it.first.empty()) continue;
     currentPersonData = new DataFile((string)"./data/team/" + (string)it.first + (string)".data");
 
-    if (stoi(currentPersonData->getParam("isManager")) == 1) {
+    try {
+      isManager = stoi(currentPersonData->getParam("isManager"));
+    } catch(std::invalid_argument& e) {
+      isManager = 0;
+    }
+
+    if (isManager) {
       _people[it.first] = new Manager(
         currentPersonData->getParam("name"),
         currentPersonData->getParam("username"),
