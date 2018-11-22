@@ -42,6 +42,31 @@ void deleteUser(Session* session){
   }
 }
 
+void editUser(Session* session){
+  string name, username, password;
+  int option;
+  bool isManager;
+  
+  cout << "Digite o novo nome do funcionario\n";
+  cin >> name;
+  cout << "Digite o novo username do funcionario\n";
+  cin >> username;
+  cout << "Digite a nova password do funcionario\n";
+  cin >> password;
+  cout << "1- Funcionario\n";
+  cout << "2- Gerente\n";
+  cout << "Opcao: ";
+  cin >> option;
+  if (option == 1){
+    isManager = false;
+  }else{
+    isManager = true;
+  }
+
+  session->getTeam()->deletePeople(username);
+  session->getTeam()->addPerson(name, username, password, isManager);
+}
+
 void createNewUser(Session* session){
   string name, username, password;
   int option;
@@ -94,7 +119,8 @@ void printManagerCommands () {
   cout << "\t[3] Novo Funcionario\n";
   cout << "\t[4] Novo Funcionario\n";
   cout << "\t[5] Deletar Funcionario\n";
-  cout << "\t[6] Histórico de vendas\n";
+  cout << "\t[6] Deletar Funcionario\n";
+  cout << "\t[7] Histórico de vendas\n";
   cout << "\t[0] Sair\n";
 }
 
@@ -221,7 +247,14 @@ void processCommand (int command, Session* session) {
         cout << "Acesso negado!" << endl;
       }
     break;
-    case 6: 
+    case 6:
+      if (isManager){
+        editUser(session);
+      }else{
+        cout << "Acesso negado!" << endl;
+      }
+    break;
+    case 7: 
       if(isManager){
         SalesHistory* salesHistory = new SalesHistory(session);
         cout << "---------- Vendas ----------\n";
