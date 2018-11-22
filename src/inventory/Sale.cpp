@@ -1,7 +1,7 @@
 #include "Sale.hpp"
 
 inventory::Sale::Sale(int id, Person* seller, string date) :
-	_id(id), _seller(seller), _date(date) {
+	_id(id), _date(date), _seller(seller) {
 		_totalPrice = 0.0;
 	}
 
