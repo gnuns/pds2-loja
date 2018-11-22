@@ -96,3 +96,10 @@ void user::Team::printUser(Person* person) {
     cout << "#" << person->getUsername() << '\t' << flush;
     cout << person->getName() << '\t' << flush;
 }
+
+user::Team::~Team() {
+  for (auto it = _people.begin(); it != _people.end(); it++) {
+    delete it->second;
+    _people.erase(it);
+  }
+}

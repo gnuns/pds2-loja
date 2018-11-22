@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 
 #include "main.hpp"
-#include<cmath>
 
 #include "user/Person.hpp"
 #include "inventory/Sale.hpp"
@@ -12,8 +12,6 @@ using namespace std;
 using namespace user;
 using namespace inventory;
 int main() {
-  // std::cout << "\x1B[2J\x1B[H";
-  
   Session *session = new Session;
   startLogin(session);
 
@@ -37,12 +35,12 @@ void deleteUser(Session* session){
   cin >> username;
   cout << username << "sera deletado. Proceguir [Y/y]: " << endl;
   cin >> test;
-  if (test == 'y' || test == 'Y'){
+  if (test == 'y' || test == 'Y') {
     session->getTeam()->deletePeople(username);
   }
 }
 
-void editUser(Session* session){
+void editUser(Session* session) {
   string name, username, password;
   int option;
   bool isManager;
@@ -57,9 +55,9 @@ void editUser(Session* session){
   cout << "2- Gerente\n";
   cout << "Opcao: ";
   cin >> option;
-  if (option == 1){
+  if (option == 1) {
     isManager = false;
-  }else{
+  } else {
     isManager = true;
   }
 
@@ -67,7 +65,7 @@ void editUser(Session* session){
   session->getTeam()->addPerson(name, username, password, isManager);
 }
 
-void createNewUser(Session* session){
+void createNewUser(Session* session) {
   string name, username, password;
   int option;
   bool isManager;
@@ -82,11 +80,9 @@ void createNewUser(Session* session){
   cout << "2- Gerente\n";
   cout << "Opcao: ";
   cin >> option;
-  if (option == 1){
-    isManager = false;
-  }else{
-    isManager = true;
-  }
+
+  isManager = (option == 2);
+  
   session->getTeam()->addPerson(name, username, password, isManager);
 }
 
@@ -116,101 +112,93 @@ void printManagerCommands () {
   cout << "\nOpções:" << endl;
   cout << "\t[1] Ver estoque\n";
   cout << "\t[2] Nova venda\n";
-  cout << "\t[3] Novo Funcionario\n";
-  cout << "\t[4] Novo Funcionario\n";
-  cout << "\t[5] Deletar Funcionario\n";
-  cout << "\t[6] Deletar Funcionario\n";
+  cout << "\t[3] Novo funcionário\n";
+  cout << "\t[4] Listar funcionários\n";
+  cout << "\t[5] Deletar funcionário\n";
+  cout << "\t[6] Editar usuário\n";
   cout << "\t[7] Histórico de vendas\n";
   cout << "\t[0] Sair\n";
 }
 
 
 
-void startSale(Session* session){
+void startSale(Session* session) {
 
     int productId, quantProduct, lastId, entrada = 1;
-      SalesHistory* salesHistory = new SalesHistory(session);
-      map<int, Sale*> sales = salesHistory->getSales();
-      for (auto it = sales.begin(); it != sales.end(); it++) {
-		     lastId = it->first;
-	    } 
-      lastId ++;
-      Sale* sale = new Sale(lastId, session->getCurrentUser(), "20/11/2018");
-      map<int, int> items;
-      while(entrada == 1) {
-        
-        cout << "\nDigite o código do produto ou (0) para outras opções: ";
-        cin >> productId;
+    SalesHistory* salesHistory = new SalesHistory(session);
+    map<int, Sale*> sales = salesHistory->getSales();
+    for (auto it = sales.begin(); it != sales.end(); it++) {
+        lastId = it->first;
+    } 
+    lastId ++;
+    Sale* sale = new Sale(lastId, session->getCurrentUser(), "20/11/2018");
+    map<int, int> items;
+
+    while (entrada == 1) {
+      cout << "\nDigite o código do produto ou (0) para outras opções: ";
+      cin >> productId;
 
 
-        if(productId == 0){
-          cout << "\nCancelar (0) | Adicionar item (1) | Registrar venda (2): ";
-          cin >> entrada;    
-          if(entrada == 1){
-            continue;
-          }else{
-            break;
-          }
-        }
-        
-        if(!session->getStock()->getProductById(productId)){
-           cout << "Código inválido!\n";
-           continue;
-        }
+      if (productId == 0) {
+        cout << "\nCancelar (0) | Adicionar item (1) | Registrar venda (2): ";
+        cin >> entrada;    
 
-
-
-        if(session->getStock()->getProductById(productId)->getQuantity() <= 0){
-           cout << "Produto indisponivel...\n";
-           continue;
-        }
-
-        cout << "Digite a quantidade: ";
-        cin >> quantProduct;
-
-        if(quantProduct <= 0){
-           cout << "Quantidade invalida!\n";
-           continue;
-        }
-
-        if(session->getStock()->getProductById(productId)->getQuantity() <= quantProduct){
-          // quantidade desejada menor que estoque
-           cout << "Quantidade indisponivel. Apenas " << session->getStock()->getProductById(productId)->getQuantity() << " unidades no estoque.\n";
-           continue;
-        }
-
-
-        sale->addItem(session->getStock()->getProductById(productId), quantProduct);
+        if (entrada == 1) continue;
+        break;
       }
-
-
-      items = sale->getItems();
-      cout << "\n---------------------------- \n";
-
-      for(auto it = items.begin(); it != items.end(); it++) {
-        cout << session->getStock()->getProductById(it->first)->getName() 
-        << " x " << it->second << "\n"; 
-      }
-
-      if(entrada == 0){
-        cout << "\n";
-        cout << "\nVenda cancelada!";
-        cout << "\n----------------------------";
       
-        return;
+      if (!session->getStock()->getProductById(productId)) {
+          cout << "Código inválido!\n";
+          continue;
       }
+
+      if (session->getStock()->getProductById(productId)->getQuantity() <= 0) {
+          cout << "Produto indisponivel...\n";
+          continue;
+      }
+
+      cout << "Digite a quantidade: ";
+      cin >> quantProduct;
+
+      if (quantProduct <= 0) {
+          cout << "Quantidade invalida!\n";
+          continue;
+      }
+
+      if (session->getStock()->getProductById(productId)->getQuantity() < quantProduct) {
+          cout << "Quantidade indisponivel. Apenas " << session->getStock()->getProductById(productId)->getQuantity() << " unidades no estoque.\n";
+          continue;
+      }
+
+      sale->addItem(session->getStock()->getProductById(productId), quantProduct);
+    }
+
+
+    items = sale->getItems();
+    cout << "\n---------------------------- \n";
+
+    for(auto it = items.begin(); it != items.end(); it++) {
+      cout << session->getStock()->getProductById(it->first)->getName() 
+      << " x " << it->second << "\n"; 
+    }
+
+    if (entrada == 0) {
       cout << "\n";
-      cout << "\nValor Total: R$" << sale->getTotalPrice();
-      cout << "\nVenda realizada com sucesso!";
-
+      cout << "\nVenda cancelada!";
       cout << "\n----------------------------";
+    
+      return;
+    }
 
-      
+    cout << "\n";
+    cout << "\nValor Total: R$" << sale->getTotalPrice();
+    cout << "\nVenda realizada com sucesso!";
 
+    cout << "\n----------------------------";
 
-      salesHistory->addSale(sale, session);
-      delete salesHistory;
-      delete sale;
+    salesHistory->addSale(sale, session);
+    delete salesHistory;
+    delete sale;
 }
 
 
@@ -227,9 +215,9 @@ void processCommand (int command, Session* session) {
       startSale(session);
       break;  
     case 3:
-      if (isManager){
+      if (isManager) {
         createNewUser(session);
-      }else{
+      } else {
         cout << "Acesso negado!" << endl;
       }
     break;
@@ -248,19 +236,19 @@ void processCommand (int command, Session* session) {
       }
     break;
     case 6:
-      if (isManager){
+      if (isManager) {
         editUser(session);
-      }else{
+      } else {
         cout << "Acesso negado!" << endl;
       }
     break;
     case 7: 
-      if(isManager){
-        SalesHistory* salesHistory = new SalesHistory(session);
-        cout << "---------- Vendas ----------\n";
-        salesHistory->listSales();         // imprime as vendas
-        cout << "----------------------------";
-        delete salesHistory;
+    if (isManager) {
+      SalesHistory* salesHistory = new SalesHistory(session);
+      cout << "---------- Vendas ----------\n";
+      salesHistory->listSales();
+      cout << "----------------------------";
+      delete salesHistory;
     }
     break;
     case 0:

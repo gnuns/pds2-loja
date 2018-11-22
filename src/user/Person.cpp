@@ -33,11 +33,12 @@ bool user::Person::checkPassword(string password) {
 
 void user::Person::savePerson(){
 	DataFile* currentManagerData;
+
 	currentManagerData = new DataFile((string)"./data/team/" + getUsername() + (string)".data", false);
 	currentManagerData->setParam("username", getUsername());
 	currentManagerData->setParam("name",  getName());
 	currentManagerData->setParam("password", getPassword());
-	
+	currentManagerData->setParam("isManager", isManager() ? "1" : "0");	
 	currentManagerData->save();
 }
 
