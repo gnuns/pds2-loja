@@ -47,12 +47,11 @@ user::Person* user::Team::getPersonByUsername (string username) {
 }
 
 void user::Team::addPerson(string name, string username, string password, bool isManager){
-
   Person* newPerson;
 
-  if(isManager){
+  if (isManager) {
     newPerson = new Manager(name, username, password);
-  }else{
+  } else {
     newPerson = new Employee(name, username, password);
   }
 
@@ -64,25 +63,19 @@ void user::Team::addPerson(string name, string username, string password, bool i
 
 void user::Team::savePeople() {
   DataFile* teamList = new DataFile("./data/team.idx.data", false);
-  DataFile* currentPersonData;
 
-  for(auto it = _people.begin(); it != _people.end(); it++) {
+  for (auto it = _people.begin(); it != _people.end(); it++) {
     teamList->setParam(it->second->getUsername());
-
     it->second->savePerson();
-
   }
+
   teamList->save();
 }
 
-void user::Team::deletePeople(string username) {
+void user::Team::deletePerson(string username) {
   DataFile* teamList = new DataFile("./data/team.idx.data", false);
-  DataFile* currentPersonData;
-
   _people.erase(username);
-
   savePeople();
-
   teamList->save();
 }
 
@@ -99,7 +92,6 @@ void user::Team::printUser(Person* person) {
 
 user::Team::~Team() {
   for (auto it = _people.begin(); it != _people.end(); it++) {
-    delete it->second;
     _people.erase(it);
   }
 }

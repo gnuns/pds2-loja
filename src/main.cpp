@@ -36,7 +36,7 @@ void deleteUser(Session* session){
   cout << username << "sera deletado. Proceguir [Y/y]: " << endl;
   cin >> test;
   if (test == 'y' || test == 'Y') {
-    session->getTeam()->deletePeople(username);
+    session->getTeam()->deletePerson(username);
   }
 }
 
@@ -55,13 +55,10 @@ void editUser(Session* session) {
   cout << "2- Gerente\n";
   cout << "Opcao: ";
   cin >> option;
-  if (option == 1) {
-    isManager = false;
-  } else {
-    isManager = true;
-  }
 
-  session->getTeam()->deletePeople(username);
+  isManager = option == 2;
+
+  session->getTeam()->deletePerson(username);
   session->getTeam()->addPerson(name, username, password, isManager);
 }
 

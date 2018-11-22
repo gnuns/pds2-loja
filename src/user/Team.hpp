@@ -18,14 +18,14 @@ namespace user {
 		void savePeople();
 		void printUser(Person*);
 	public:
-		Team ();
+		Team();
+		Person* getPersonByUsername(string);
 		void listManager();
 		void listEmployees();
-		void removePerson(string);
 		void addPerson(string, string, string, bool isManager);
-		void deletePeople(string username);
+		void deletePerson(string username);
 		void listUsers();
-		Person* getPersonByUsername(string);
+		~Team();
 	};
 }
 
