@@ -17,3 +17,4 @@ void printEmployeeCommands();
 void printManagerCommands();
 void createNewUser();
 void listUsers();
+void deleteUser();

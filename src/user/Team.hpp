@@ -23,6 +23,7 @@ namespace user {
 		void listEmployees();
 		void removePerson(string);
 		void addPerson(string, string, string, bool isManager);
+		void deletePeople(string username);
 		void listUsers();
 		Person* getPersonByUsername(string);
 	};

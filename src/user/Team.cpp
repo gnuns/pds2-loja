@@ -67,6 +67,17 @@ void user::Team::savePeople() {
   teamList->save();
 }
 
+void user::Team::deletePeople(string username) {
+  DataFile* teamList = new DataFile("./data/team.idx.data", false);
+  DataFile* currentPersonData;
+
+  _people.erase(username);
+
+  savePeople();
+
+  teamList->save();
+}
+
 void user::Team::listUsers() {
   for (auto it = _people.begin(); it != _people.end(); it++) {
     printUser(it->second);

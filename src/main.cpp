@@ -30,6 +30,18 @@ void listUsers(Session* session){
   cout << "\n---------------------------- \n";
 }
 
+void deleteUser(Session* session){
+  string username;
+  char test;
+  cout << "Digite o username para ser deletado: " << endl;
+  cin >> username;
+  cout << username << "sera deletado. Proceguir [Y/y]: " << endl;
+  cin >> test;
+  if (test == 'y' || test == 'Y'){
+    session->getTeam()->deletePeople(username);
+  }
+}
+
 void createNewUser(Session* session){
   string name, username, password;
   int option;
@@ -81,7 +93,8 @@ void printManagerCommands () {
   cout << "\t[2] Nova venda\n";
   cout << "\t[3] Novo Funcionario\n";
   cout << "\t[4] Novo Funcionario\n";
-  cout << "\t[5] Histórico de vendas\n";
+  cout << "\t[5] Deletar Funcionario\n";
+  cout << "\t[6] Histórico de vendas\n";
   cout << "\t[0] Sair\n";
 }
 
@@ -201,7 +214,14 @@ void processCommand (int command, Session* session) {
         cout << "Acesso negado!" << endl;
       }
     break;
-    case 5: 
+    case 5:
+      if (isManager){
+        deleteUser(session);
+      }else{
+        cout << "Acesso negado!" << endl;
+      }
+    break;
+    case 6: 
       if(isManager){
         SalesHistory* salesHistory = new SalesHistory(session);
         cout << "---------- Vendas ----------\n";
