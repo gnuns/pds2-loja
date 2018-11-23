@@ -8,6 +8,9 @@
 using namespace std;
 
 namespace inventory {
+	/**
+	 * Classe que representa os produtos da loja.
+	 */
 	class Product {
 		private:
 			int _id;

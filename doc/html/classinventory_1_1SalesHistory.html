@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Loja PDS: Referência da Classe inventory::SalesHistory</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Loja PDS
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceinventory.html">inventory</a></li><li class="navelem"><a class="el" href="classinventory_1_1SalesHistory.html">SalesHistory</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos Públicos</a> &#124;
+<a href="classinventory_1_1SalesHistory-members.html">Lista de todos os Membros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência da Classe inventory::SalesHistory</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Classe para gerenciamento do histórico de vendas.  
+ <a href="classinventory_1_1SalesHistory.html#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="SalesHistory_8hpp_source.html">SalesHistory.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos Públicos</h2></td></tr>
+<tr class="memitem:ac0801ba5d6b0382a22978a64261d06af"><td class="memItemLeft" align="right" valign="top"><a id="ac0801ba5d6b0382a22978a64261d06af"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SalesHistory</b> (<a class="el" href="classcore_1_1Session.html">Session</a> *session)</td></tr>
+<tr class="separator:ac0801ba5d6b0382a22978a64261d06af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac057673feb0b2fbb3f36c3a361e88fcd"><td class="memItemLeft" align="right" valign="top"><a id="ac057673feb0b2fbb3f36c3a361e88fcd"></a>
+map&lt; int, <a class="el" href="classinventory_1_1Sale.html">Sale</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getSales</b> ()</td></tr>
+<tr class="separator:ac057673feb0b2fbb3f36c3a361e88fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d496bd02c21cec8340d2ab2b4f2245c"><td class="memItemLeft" align="right" valign="top"><a id="a0d496bd02c21cec8340d2ab2b4f2245c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>listSales</b> ()</td></tr>
+<tr class="separator:a0d496bd02c21cec8340d2ab2b4f2245c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc62f4965ec7b76d094d90ceec88726d"><td class="memItemLeft" align="right" valign="top"><a id="adc62f4965ec7b76d094d90ceec88726d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addSale</b> (<a class="el" href="classinventory_1_1Sale.html">Sale</a> *, <a class="el" href="classcore_1_1Session.html">Session</a> *)</td></tr>
+<tr class="separator:adc62f4965ec7b76d094d90ceec88726d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b82053cd18955910dbdc9bdcb150c98"><td class="memItemLeft" align="right" valign="top"><a id="a8b82053cd18955910dbdc9bdcb150c98"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>cancelSale</b> (int id)</td></tr>
+<tr class="separator:a8b82053cd18955910dbdc9bdcb150c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e4a75aef2d4d9d6b64ce6d1487d9cf"><td class="memItemLeft" align="right" valign="top"><a id="a95e4a75aef2d4d9d6b64ce6d1487d9cf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>searchSaleById</b> (int)</td></tr>
+<tr class="separator:a95e4a75aef2d4d9d6b64ce6d1487d9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37d8264a27b4860c4ac692ef990ad72"><td class="memItemLeft" align="right" valign="top"><a id="aa37d8264a27b4860c4ac692ef990ad72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>searchSalesByDate</b> (string date)</td></tr>
+<tr class="separator:aa37d8264a27b4860c4ac692ef990ad72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7d5071c49da3d621d7a09625fb03d0"><td class="memItemLeft" align="right" valign="top"><a id="a2e7d5071c49da3d621d7a09625fb03d0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>searchSalesByEmployee</b> (int id)</td></tr>
+<tr class="separator:a2e7d5071c49da3d621d7a09625fb03d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b98dc1dfe37ca35de17cfd36a0c86a"><td class="memItemLeft" align="right" valign="top"><a id="ae9b98dc1dfe37ca35de17cfd36a0c86a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>searchSalesByPrice</b> (double)</td></tr>
+<tr class="separator:ae9b98dc1dfe37ca35de17cfd36a0c86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>Classe para gerenciamento do histórico de vendas. </p>
+</div><hr/>A documentação para esta classe foi gerada a partir dos seguintes arquivos:<ul>
+<li>src/inventory/<a class="el" href="SalesHistory_8hpp_source.html">SalesHistory.hpp</a></li>
+<li>src/inventory/SalesHistory.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

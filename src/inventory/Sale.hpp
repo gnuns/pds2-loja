@@ -12,6 +12,9 @@ using namespace std;
 using namespace user;
 
 namespace inventory {
+    /**
+	 * Classe que armazena as informações de cada venda.
+	 */
 	class Sale {
 	private:
         int _id;

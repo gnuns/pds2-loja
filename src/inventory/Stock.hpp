@@ -10,6 +10,9 @@
 using namespace std;
 
 namespace inventory {
+	/**
+	 * Classe para gerenciamento do estoque da loja.
+	 */
 	class Stock {
 	private:
 		map<int, Product*> _products;

@@ -12,6 +12,9 @@
 using namespace std;
 
 namespace user {
+	/**
+	 * Classe que gerencia a equipe de funcionários da loja.
+	 */
 	class Team {
 	private:
 		map<string, Person*> _people;

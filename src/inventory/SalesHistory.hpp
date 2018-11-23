@@ -12,6 +12,9 @@ using namespace std;
 using namespace core;
 
 namespace inventory {
+	/**
+	 * Classe para gerenciamento do histórico de vendas.
+	 */
 	class SalesHistory {
 	private:
 		map<int, Sale*> _sales;
